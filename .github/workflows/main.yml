@@ -19,10 +19,15 @@ jobs:
         with:
           gradle-version: '8.14.3'
 
-      - name: Build debug APK
-        run: gradle :app:assembleDebug --no-daemon
+      - name: Build debug APKs
+        run: gradle :app:assembleDebug :routertool:assembleDebug --no-daemon
 
       - uses: actions/upload-artifact@v4
         with:
           name: IconExporter-apk
           path: app/build/outputs/apk/debug/app-debug.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RouterTool-apk
+          path: routertool/build/outputs/apk/debug/routertool-debug.apk

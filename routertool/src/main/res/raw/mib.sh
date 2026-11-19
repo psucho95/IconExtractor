@@ -1,0 +1,5 @@
+echo "--- switch1 port 1 (1G WAN)"
+swconfig dev switch1 show | grep "port:1 "
+swconfig dev switch1 port 1 get mib | grep -iE "fcs|align|runt|fragment|err|collision"
+echo "--- eth1 (2.5G port)"
+ifconfig eth1 | grep -E "RX packets|TX packets"
