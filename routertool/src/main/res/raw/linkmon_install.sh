@@ -17,12 +17,12 @@ lm_state() {
 
 lm_run() {
     echo $$ > "$PIDF"
-    echo "$(date '+%F %T') linkmon started" >> "$LOG"
+    echo "$(date '+%F %T') linkmon started @$(date +%s)" >> "$LOG"
     prev=""
     while true; do
         s=$(lm_state)
         if [ "$s" != "$prev" ]; then
-            echo "$(date '+%F %T') $s" >> "$LOG"
+            echo "$(date '+%F %T') $s @$(date +%s)" >> "$LOG"
             prev="$s"
             if [ "$(wc -l < "$LOG")" -gt 2000 ]; then
                 tail -1000 "$LOG" > "$LOG.tmp" && mv "$LOG.tmp" "$LOG"
